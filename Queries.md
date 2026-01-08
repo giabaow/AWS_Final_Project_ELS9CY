@@ -1,4 +1,4 @@
-#Monthly average passenger volume 
+# Monthly average passenger volume 
 ```
 SELECT
     CAST(SUBSTRING("Activity Period Start Date", 6, 2) AS INTEGER) AS month,
@@ -7,7 +7,7 @@ FROM "AwsDataCatalog"."flight_db"."raw"
 GROUP BY CAST(SUBSTRING("Activity Period Start Date", 6, 2) AS INTEGER)
 ORDER BY month;
 ```
-#Monthly Passenger Volume Associated with Weather Conditions in Each Airport
+# Monthly Passenger Volume Associated with Weather Conditions in Each Airport
 ```
 WITH weather_mapped AS (
     SELECT *,
@@ -47,7 +47,7 @@ GROUP BY
 ORDER BY
     airport_code, year DESC, total_passengers DESC;
 ```
-#Yearly passenger volume per airlines
+# Yearly passenger volume per airlines
 ```
 SELECT 
     "Operating Airline" AS airline,
