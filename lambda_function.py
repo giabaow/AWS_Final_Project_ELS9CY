@@ -70,32 +70,4 @@ def lambda_handler(event, context):
     return {
         "statusCode": 200,
         "body": "Weather data fetched from API and saved to S3."
-    }                    "year": year,
-                    "month": month,
-                    "coord": coords,
-                    "main": {
-                        "temp": round(15 + 10*(month/12), 2),
-                        "humidity": 50 + month % 50
-                    },
-                    "weather": [
-                        {
-                            "main": "Clear" if month < 10 else "Rain",
-                            "description": "clear sky" if month < 10 else "rainy"
-                        }
-                    ],
-                    "wind": {
-                        "speed": round(3 + 2*(month%5), 2),
-                        "deg": (month*30) % 360
-                    },
-                    "dt": int(datetime(year, month, 1).timestamp())
-                })
-
-        # Upload one JSON per airport
-        s3_key = f"weather/{airport}.json"
-        s3.put_object(Bucket=BUCKET, Key=s3_key, Body=json.dumps(data_list))
-        print(f"Saved {airport} weather data ({len(data_list)} records) to {s3_key}")
-
-    return {
-        "statusCode": 200,
-        "body": "Sample weather data generated for all airports (1999–2025)"
     }
